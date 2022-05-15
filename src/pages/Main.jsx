@@ -26,7 +26,7 @@ function Main() {
             setRequest(location.state.request)
             setResult({ ...location.state.data, request });
         }
-    }, [locationState])
+    }, [])
 
     const onSearch = async (e) => {
         e.preventDefault();
@@ -66,9 +66,13 @@ function Main() {
                 onChange={(e) => setRequest(e.target.value)} 
                 />
                 <div className={s.block__button}>
-                    {request ? <div className={s.unliked__block}>
-                    <img src={modalActive ? likedHeart : unlikedHeart} alt="unliked" className={s.unliked} onClick={() => setModalActive(true)}/>
-                    </div> : null}
+                    {
+                    request ? 
+                    <div className={s.unliked__block}>
+                        <img src={modalActive ? likedHeart : unlikedHeart} alt="unliked" className={s.unliked} onClick={() => setModalActive(true)}/>
+                    </div> 
+                    : null
+                    }
                     <button type='submit'>Найти</button>
                 </div>
             </form>

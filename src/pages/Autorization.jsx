@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Autorization.module.css';
 import logo from '../img/sibdev-logo.svg';
 import eyeOff from '../img/eye-off.svg';
+import eyeOnBlue from '../img/eye-blue.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -72,6 +73,9 @@ const validationSchema = Yup.object({
                             (errMsg) => <div className={`${s.error}`}>{errMsg}</div>
                         }
                     </ErrorMessage>
+                    {/* <div className={s.show__password}>
+                        <img src={eyeOnBlue} alt="showPassword" className={s.eye__on}/>
+                    </div> */}
                 </div>
                 <button type='submit' className={s.form__button}>Войти</button>
             </Form>
