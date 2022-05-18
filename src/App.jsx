@@ -12,6 +12,8 @@ import Header from './components/Header';
 
 function App() {
   const [isToken, setIsToken] = useState(false);
+  const [userInfo, setUserInfo] = useState([]);
+
 
   return (
     <div className="App">  
@@ -20,16 +22,16 @@ function App() {
           {
             localStorage.getItem('token') ? 
           <>
-          <Header isToken={isToken} setIsToken={setIsToken}/>
+          <Header isToken={isToken} setIsToken={setIsToken} userInfo={userInfo} setUserInfo={setUserInfo} />
           <Routes>
-            <Route path='/' element={<Main />} />
+            <Route path='/' element={<Main userInfo={userInfo} setUserInfo={setUserInfo} />} />
             <Route path='/player' element={<Player />} />
-            <Route path='/favorites' element={<Favorites />} />
+            <Route path='/favorites' element={<Favorites userInfo={userInfo} setUserInfo={setUserInfo} />} />
           </Routes>
           </>
           :
           <Routes>
-            <Route path='/' element={<Autorization isToken={isToken} setIsToken={setIsToken}/>} />
+            <Route path='/' element={<Autorization isToken={isToken} setIsToken={setIsToken} userInfo={userInfo} setUserInfo={setUserInfo} />} />
           </Routes>
           } 
       </BrowserRouter>

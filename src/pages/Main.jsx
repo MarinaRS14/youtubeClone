@@ -10,7 +10,7 @@ import likedHeart from '../img/liked-heart.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ModalForm from '../components/ModalForm';
 
-function Main() {
+function Main({ userInfo, setUserInfo }) {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -133,7 +133,9 @@ function Main() {
             setActive={setModalActive} 
             request={request}
             setRequest={setRequest}
-            readonly={true} 
+            readonly={true}
+            userInfo={userInfo}
+            setUserInfo={setUserInfo} 
         />
         :
         null

@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Autorization.module.css';
 import logo from '../img/sibdev-logo.svg';
-import eyeOff from '../img/eye-off.svg';
-import eyeOnBlue from '../img/eye-blue.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -12,7 +10,8 @@ const initialValues = {
     password: ''
 };
 
-function Autorization({ isToken, setIsToken }) {
+function Autorization({ isToken, setIsToken, userInfo, setUserInfo }) {
+
 
     const onSubmit = async (values) => {
         try {
@@ -23,23 +22,32 @@ function Autorization({ isToken, setIsToken }) {
             if(response.data.isAuth) {
                 localStorage.setItem('login', values.login)
                 localStorage.setItem('token', response.data.token)
-                setIsToken(!isToken)
+                setIsToken(!isToken);
+
+            const userData = await axios.get('https://6278e5c96ac99a91065effff.mockapi.io/users');
+            // console.log(userData.data)
+            const user = await userData.data.filter(item => item.user == values.login);
+            if(user.length !== 0) {
+                setUserInfo(user[0]);
+            }
+            
             } else if(!response.data.isAuth) {
                 alert('Такой пользователь не существует. Попробуйте еще раз')
+                console.log(response)
             }
         }
         catch(e) {
             console.log(e)
         }    
     }
+    
 
 const validationSchema = Yup.object({
     login: Yup.string().required('Заполните поле'),
     password: Yup.string().required('Заполните поле')
 });
 
-  return (
-      
+  return ( 
     <div className={s.container}>
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         <div className={s.wrapper}>
@@ -73,9 +81,6 @@ const validationSchema = Yup.object({
                             (errMsg) => <div className={`${s.error}`}>{errMsg}</div>
                         }
                     </ErrorMessage>
-                    {/* <div className={s.show__password}>
-                        <img src={eyeOnBlue} alt="showPassword" className={s.eye__on}/>
-                    </div> */}
                 </div>
                 <button type='submit' className={s.form__button}>Войти</button>
             </Form>

@@ -3,6 +3,8 @@ import s from './ModalForm.module.css';
 import axios from 'axios';
 
 function ModalForm({ 
+    userInfo,
+    setUserInfo,
     active, 
     setActive, 
     request, 
@@ -12,7 +14,9 @@ function ModalForm({
     order = 'relevance',
     amount = 20
 }) {
-
+    
+  const [requestChange, setRequestChange] = useState(request);
+  const [titleChange, setTitleChange] = useState(title);
   const [rangeVal, setRangeVal] = useState(amount);
   const [selectValue, setSelectValue] = useState(order);
   const handleChange = (e) => {
@@ -35,17 +39,34 @@ function ModalForm({
         }
     };
     if(readonly) {
-        await axios.post('https://6278e5c96ac99a91065effff.mockapi.io/favorites', favorited);
+        // await axios.post('https://6278e5c96ac99a91065effff.mockapi.io/favorites', favorited);
+        await axios.post('https://6278e5c96ac99a91065effff.mockapi.io/users', {
+            user: `${localStorage.getItem('login')}`, 
+            info: [
+                ...`${userInfo.info}`, 
+                favorited
+            ]
+        });
         await setActive(!active);
     } else {
-        await axios.delete(`https://6278e5c96ac99a91065effff.mockapi.io/favorites/${id}`);
-        await axios.post('https://6278e5c96ac99a91065effff.mockapi.io/favorites', {request: requestChange, ...favorited});
+        // await axios.delete(`https://6278e5c96ac99a91065effff.mockapi.io/favorites/${id}`);
+        await axios.delete(`https://6278e5c96ac99a91065effff.mockapi.io/users/${userInfo.id}`);
+        await axios.post('https://6278e5c96ac99a91065effff.mockapi.io/users', {
+            user: `${localStorage.getItem('login')}`, 
+            info: [
+                ...`${userInfo.info}`, 
+                {
+                    request: requestChange, 
+                    ...favorited
+                }
+                
+            ]
+        });
         setActive(!active);
     }
   }
 
-  const [requestChange, setRequestChange] = useState(request);
-  const [titleChange, setTitleChange] = useState(title);
+  
 
   return (
     <div className={active ? `${s.container} ${s.active}` : `${s.container}`} onClick={() => setActive(false)}>
