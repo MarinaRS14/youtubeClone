@@ -4,7 +4,7 @@ const BASE = process.env.REACT_APP_BASE_URL;
 
 
 export const youtube = axios.create({
-    baseURL: `${BASE}`,
+    baseURL: BASE,
     params: {
         part: 'snippet',
         key: KEY,
