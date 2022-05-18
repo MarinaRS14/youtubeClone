@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/Header';
 import s from './Player.module.css';
 import Iframe from 'react-iframe';
 import { useLocation } from 'react-router-dom';

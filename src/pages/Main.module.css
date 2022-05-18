@@ -188,36 +188,24 @@ li {
 }
 
 
-/* for add favorite */
-
-/* .unliked {
-    position: fixed;
-    right: 540px;
-    top: 485px;
-} */
 
 
 
-
-/* @media screen and (max-width: 992px) {
-    .search input {
-        width: calc(500px - 120px);
-    }
-    .search button {
-        width: 120px;
+@media screen and (max-width: 992px) {
+    .content__grid {
+        grid-template-columns: 1fr 1fr 1fr;
     }
     
 }
 
 @media screen and (max-width: 768px) {
-    
+    .content__grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media screen and (max-width: 480px) {
-    .search input {
-        width: calc(300px - 80px);
+    .content__grid {
+        grid-template-columns: 1fr;
     }
-    .search button {
-        width: 80px;
-    }
-} */
+}

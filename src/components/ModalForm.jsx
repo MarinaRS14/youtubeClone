@@ -1,9 +1,6 @@
-
 import React, { useState } from 'react';
 import s from './ModalForm.module.css';
 import axios from 'axios';
-
-
 
 function ModalForm({ 
     active, 
@@ -24,39 +21,25 @@ function ModalForm({
 
   const saveRequest = async (e) => {
     e.preventDefault();
-    let favorited;
-    if(readonly) {
-        favorited = {
-            request: request,
-            title: titleChange,
-            order: selectValue,
-            amount: rangeVal,
-            api: {
-                params: {
-                  q: request,
-                  maxResults: rangeVal,
-                  order: selectValue,
-                }
+    let favorited = {
+        request: request,
+        title: titleChange,
+        order: selectValue,
+        amount: rangeVal,
+        api: {
+            params: {
+              q: request,
+              maxResults: rangeVal,
+              order: selectValue,
             }
-        };
+        }
+    };
+    if(readonly) {
         await axios.post('https://6278e5c96ac99a91065effff.mockapi.io/favorites', favorited);
         await setActive(!active);
     } else {
-        favorited = {
-            request: requestChange,
-            title: titleChange,
-            order: selectValue,
-            amount: rangeVal,
-            api: {
-                params: {
-                  q: request,
-                  maxResults: rangeVal,
-                  order: selectValue,
-                }
-            }
-        };
         await axios.delete(`https://6278e5c96ac99a91065effff.mockapi.io/favorites/${id}`);
-        await axios.post('https://6278e5c96ac99a91065effff.mockapi.io/favorites', favorited);
+        await axios.post('https://6278e5c96ac99a91065effff.mockapi.io/favorites', {request: requestChange, ...favorited});
         setActive(!active);
     }
   }

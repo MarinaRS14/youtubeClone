@@ -34,5 +34,10 @@
     display: inline-block;
 }
 
-
+@media screen and (max-width: 992px) {
+    .fav__list {
+        padding-left: 10px;
+    }
+    
+}
 
