@@ -34,7 +34,7 @@ function Main({ userInfo, setUserInfo }) {
             const { data } = await youtube.get('/search', {
                 params: {
                   q: request,
-                //   maxResults: 6,
+                  maxResults: 12,
                 }
               });
             setResult({...data, request});

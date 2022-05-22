@@ -6,19 +6,21 @@ import { useNavigate } from 'react-router-dom';
 import { youtube } from '../api/youtubeApi';
 
 
-function Favorites({ userInfo, setUserInfo }) {
+function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [modalActive, setModalActive] = useState(false);
   const [addedFavorite, setAddedFavorite] = useState(null);
 
+  
   useEffect(() => {
     async function fetchData() {
-      const favoritesResponse = await axios.get('https://6278e5c96ac99a91065effff.mockapi.io/users');
-      const savedFavorites = favoritesResponse.data.filter(item => item.user == localStorage.getItem('login'));
-      console.log(savedFavorites[0])
-      setFavorites(savedFavorites[0].info);
-      // setUserInfo(favorites)
-      // console.log(userInfo)
+      const favoritesResponse = await axios.get(`${process.env.REACT_APP_API_URL}`+'users');
+      if(favoritesResponse.data.length !== 0) {
+        const savedFavorites = favoritesResponse.data.filter(item => item.user == localStorage.getItem('login'));
+        if(savedFavorites.length !== 0) {
+          setFavorites(savedFavorites[0].info);
+        } 
+      }
     }
     fetchData();
   }, []);
@@ -67,6 +69,11 @@ function Favorites({ userInfo, setUserInfo }) {
 }
 
 export default Favorites
+
+
+
+
+
 
 
 

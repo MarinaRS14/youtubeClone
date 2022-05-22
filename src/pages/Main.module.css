@@ -2,7 +2,6 @@
 .wrapper {
     max-width: 686px;
     height: calc(100vh - 80px);
-    /* background-color: aquamarine; */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -23,13 +22,11 @@
 p {
     font-weight: 400;
     font-size: 36px;
-    /* text-align: center; */
 }
 
 .search {
     display: flex;
     flex-direction: row;
-    /* max-width: 686px; */
     height: 52px;
     width: 100%;
 }
@@ -78,11 +75,7 @@ p {
 .block__button {
     display: flex;
     flex-direction: row;
-    /* background-color: #fff; */
-    /* border-bottom: 1px solid rgba(23, 23, 25, 0.2);
-    border-top: 1px solid rgba(23, 23, 25, 0.2); */
     align-items: center;
-    /* justify-content: center; */
     position: relative;
     left: -40px;
 }
@@ -96,17 +89,6 @@ p {
     width: 40px;
 }
 
-
-
-/* стили, удаляемые после получения ответа с сервера */
-
-/* .wrapper__center {
-    height: calc(100vh - 80px);
-    max-width: 686px;
-    gap: 55px;
-    padding-top: 0;
-    align-items: center;
-} */
 .container_card {
     width: 100%;
 }
@@ -147,7 +129,6 @@ li {
     gap: 8px;
 }
 .card img {
-    /* width: 245px; */
     height: 138px;
     border: 1px solid #1390E5;
     cursor: pointer;
@@ -186,10 +167,6 @@ li {
 .list__block {
     width: 510px;
 }
-
-
-
-
 
 @media screen and (max-width: 992px) {
     .content__grid {

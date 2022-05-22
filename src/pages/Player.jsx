@@ -11,8 +11,8 @@ function Player() {
     <div>
       <div className={s.player}>
         <Iframe url={id}
-        width="800px"
-        height="500px"
+        width="80%"
+        height="80%"
         id="myId"
         display="initial"
         position="relative"
@@ -20,7 +20,6 @@ function Player() {
         />
       </div>
     </div>
-    
   )
 }
 

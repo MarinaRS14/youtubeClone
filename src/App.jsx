@@ -7,18 +7,13 @@ import Player from './pages/Player';
 import Favorites from './pages/Favorites';
 import Header from './components/Header';
 
-
-
-
 function App() {
   const [isToken, setIsToken] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
 
-
   return (
     <div className="App">  
       <BrowserRouter>
-        
           {
             localStorage.getItem('token') ? 
           <>

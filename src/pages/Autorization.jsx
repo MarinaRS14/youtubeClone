@@ -10,12 +10,10 @@ const initialValues = {
     password: ''
 };
 
-function Autorization({ isToken, setIsToken, userInfo, setUserInfo }) {
-
-
-    const onSubmit = async (values) => {
+function Autorization({ isToken, setIsToken }) {
+        const onSubmit = async (values) => {
         try {
-            const response = await axios.post('https://typ-back-end.herokuapp.com/api/login', {
+            const response = await axios.post(`${process.env.REACT_APP_API_AUTH}`, {
                 login: values.login,
                 password: values.password
             })
@@ -24,13 +22,6 @@ function Autorization({ isToken, setIsToken, userInfo, setUserInfo }) {
                 localStorage.setItem('token', response.data.token)
                 setIsToken(!isToken);
 
-            const userData = await axios.get('https://6278e5c96ac99a91065effff.mockapi.io/users');
-            // console.log(userData.data)
-            const user = await userData.data.filter(item => item.user == values.login);
-            if(user.length !== 0) {
-                setUserInfo(user[0]);
-            }
-            
             } else if(!response.data.isAuth) {
                 alert('Такой пользователь не существует. Попробуйте еще раз')
                 console.log(response)
@@ -41,7 +32,6 @@ function Autorization({ isToken, setIsToken, userInfo, setUserInfo }) {
         }    
     }
     
-
 const validationSchema = Yup.object({
     login: Yup.string().required('Заполните поле'),
     password: Yup.string().required('Заполните поле')
