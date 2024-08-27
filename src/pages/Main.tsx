@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 import s from './Main.module.css';
-import { youtube } from '../api/youtubeApi';
+import { youtube } from '../api/youtubeApi.ts';
 import gridAct from '../img/grid-active.svg';
 import grid from '../img/grid.svg';
 import listAct from '../img/list-active.svg';
@@ -8,40 +8,54 @@ import list from '../img/list.svg';
 import unlikedHeart from '../img/unliked-heart.svg';
 import likedHeart from '../img/liked-heart.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ModalForm from '../components/ModalForm';
-import i18n from '../i18n';
+import ModalForm from '../components/ModalForm.tsx';
 import { useTranslation } from 'react-i18next';
 
-function Main({ userInfo, setUserInfo }) {
-  const { t, i18n } = useTranslation();
+type ResponseType = {
+  totalResults: number;
+  items: Array<any>;
+  request: string;
+};
 
-  const location = useLocation();
+function Main() {
+  const { t } = useTranslation();
+
+  // const location = useLocation();
   const navigate = useNavigate();
 
   const [request, setRequest] = useState('');
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<ResponseType>({
+    totalResults: 0,
+    items: [],
+    request: '',
+  });
   const [modalActive, setModalActive] = useState(false);
   const [gridActive, setGridActive] = useState(true);
   const [listActive, setListActive] = useState(false);
-  const [locationState, setLocationState] = useState(location.state);
+  // const [locationState, setLocationState] = useState(location.state);
 
-  useEffect(() => {
-    if (locationState) {
-      setRequest(location.state.request);
-      setResult({ ...location.state.data, request });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (location.state) {
+  //     setRequest(location.state.request);
+  //     setResult({ ...location.state.data, request });
+  //   }
+  // }, []);
 
-  const onSearch = async (e) => {
+  const onSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (request) {
-      const { data } = await youtube.get('/search', {
+      const response = await youtube.get('/search', {
         params: {
           q: request,
           maxResults: 12,
         },
       });
-      setResult({ ...data, request });
+      setResult({
+        totalResults: response.data.pageInfo.totalResults,
+        items: response.data.items,
+        request,
+      });
     }
   };
 
@@ -89,7 +103,7 @@ function Main({ userInfo, setUserInfo }) {
               <ul className={s.info__left}>
                 <li>{t('videoOnRequest')}</li>
                 <li className={s.bold}>&#171;{request.toLowerCase()}&#187;</li>
-                <li className={s.amount}>{result.pageInfo.totalResults}</li>
+                <li className={s.amount}>{result.totalResults}</li>
               </ul>
               <div className={s.info__right}>
                 <img src={gridActive ? gridAct : grid} alt="grid" onClick={handleClickGrid} />
@@ -148,8 +162,6 @@ function Main({ userInfo, setUserInfo }) {
           request={request}
           setRequest={setRequest}
           readonly={true}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
         />
       ) : null}
     </div>

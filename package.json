@@ -6,6 +6,10 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.0",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "formik": "^2.2.9",
@@ -17,6 +21,7 @@
     "react-iframe": "^1.8.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "typescript": "^5.5.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

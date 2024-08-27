@@ -5,7 +5,12 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-function Header({ isToken, setIsToken }) {
+type HeaderPropsType = {
+  isToken: boolean;
+  setIsToken: (isToken: boolean) => void;
+};
+
+function Header({ isToken, setIsToken }: HeaderPropsType) {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -15,6 +20,7 @@ function Header({ isToken, setIsToken }) {
     await setIsToken(!isToken);
     navigate('/');
   };
+
   return (
     <header>
       <div className={s.header__menu}>
