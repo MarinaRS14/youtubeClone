@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import s from './Autorization.module.css';
-import logo from '../img/sibdev-logo.svg';
+import logo from '../assets/img/logo.svg';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';

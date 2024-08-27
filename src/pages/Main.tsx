@@ -1,12 +1,12 @@
-import React, { FormEvent, FormEventHandler, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import s from './Main.module.css';
 import { youtube } from '../api/youtubeApi.ts';
-import gridAct from '../img/grid-active.svg';
-import grid from '../img/grid.svg';
-import listAct from '../img/list-active.svg';
-import list from '../img/list.svg';
-import unlikedHeart from '../img/unliked-heart.svg';
-import likedHeart from '../img/liked-heart.svg';
+import gridAct from '../assets/img/table-active.svg';
+import grid from '../assets/img/table.svg';
+import listAct from '../assets/img/list-active.svg';
+import list from '../assets/img/list.svg';
+import unlikedHeart from '../assets/img/outlined-heart.svg';
+import likedHeart from '../assets/img/filled-heart.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ModalForm from '../components/ModalForm.tsx';
 import { useTranslation } from 'react-i18next';
@@ -24,11 +24,7 @@ function Main() {
   const navigate = useNavigate();
 
   const [request, setRequest] = useState('');
-  const [result, setResult] = useState<ResponseType>({
-    totalResults: 0,
-    items: [],
-    request: '',
-  });
+  const [result, setResult] = useState<ResponseType | null>(null);
   const [modalActive, setModalActive] = useState(false);
   const [gridActive, setGridActive] = useState(true);
   const [listActive, setListActive] = useState(false);
@@ -97,6 +93,7 @@ function Main() {
             <button type="submit">{t('find')}</button>
           </div>
         </form>
+
         {result ? (
           <div className={s.container_card}>
             <div className={s.result__info}>

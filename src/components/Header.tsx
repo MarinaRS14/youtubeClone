@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Header.module.css';
-import logo from '../img/sibdev-logo.svg';
+import logo from '../assets/img/logo.svg';
+
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
