@@ -4,6 +4,7 @@ import logo from '../img/sibdev-logo.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   login: '',
@@ -11,6 +12,8 @@ const initialValues = {
 };
 
 function Autorization({ isToken, setIsToken }) {
+  const { t } = useTranslation();
+
   const onSubmit = async (values) => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_AUTH}`, {
@@ -34,8 +37,8 @@ function Autorization({ isToken, setIsToken }) {
   };
 
   const validationSchema = Yup.object({
-    login: Yup.string().required('Заполните поле'),
-    password: Yup.string().required('Заполните поле'),
+    login: Yup.string().required(t('autorization.requiredField')),
+    password: Yup.string().required(t('autorization.requiredField')),
   });
 
   return (
@@ -43,24 +46,24 @@ function Autorization({ isToken, setIsToken }) {
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         <div className={s.wrapper}>
           <img src={logo} alt="Logo" />
-          <div className={s.enter}>Вход</div>
+          <div className={s.enter}>{t('autorization.enter')}</div>
           <Form className={s.form}>
             <div className={s.form__field}>
-              <label htmlFor="login">Логин</label>
+              <label htmlFor="login">{t('autorization.username')}</label>
               <Field id="login" type="text" name="login" className={s.input} />
               <ErrorMessage name="login">
                 {(errMsg) => <div className={`${s.error}`}>{errMsg}</div>}
               </ErrorMessage>
             </div>
             <div className={s.form__field}>
-              <label htmlFor="password">Пароль</label>
+              <label htmlFor="password">{t('autorization.password')}</label>
               <Field id="password" type="password" name="password" className={s.input} />
               <ErrorMessage name="password">
                 {(errMsg) => <div className={`${s.error}`}>{errMsg}</div>}
               </ErrorMessage>
             </div>
             <button type="submit" className={s.form__button}>
-              Войти
+              {t('autorization.enter')}
             </button>
           </Form>
         </div>
