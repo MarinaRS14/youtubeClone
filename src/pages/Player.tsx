@@ -10,17 +10,10 @@ function Player() {
   return (
     <div>
       <div className={s.player}>
-        <Iframe url={id}
-        width="80%"
-        height="80%"
-        id="myId"
-        display="initial"
-        position="relative"
-        allowFullScreen
-        />
+        <Iframe url={id} width="80%" height="80%" id="myId" position="relative" allowFullScreen />
       </div>
     </div>
-  )
+  );
 }
 
-export default Player
+export default Player;

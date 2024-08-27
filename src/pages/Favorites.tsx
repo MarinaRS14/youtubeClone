@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import s from './Favorites.module.css';
 import axios from 'axios';
-import ModalForm from '../components/ModalForm';
+import ModalForm from '../components/ModalForm.tsx';
 import { useNavigate } from 'react-router-dom';
-import { youtube } from '../api/youtubeApi';
+import { youtube } from '../api/youtubeApi.ts';
 import { useTranslation } from 'react-i18next';
 
 function Favorites() {

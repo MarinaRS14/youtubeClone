@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
 import s from './Autorization.module.css';
 import logo from '../img/sibdev-logo.svg';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
-const initialValues = {
-  login: '',
-  password: '',
+type AuthorizationPropsType = {
+  isToken: boolean;
+  setIsToken: (isToken: boolean) => void;
 };
 
-function Autorization({ isToken, setIsToken }) {
+interface InitialValues {
+  login: string;
+  password: string;
+}
+
+function Authorization({ isToken, setIsToken }: AuthorizationPropsType) {
   const { t } = useTranslation();
+
+  const initialValues: InitialValues = {
+    login: '',
+    password: '',
+  };
 
   const onSubmit = async (values) => {
     try {
@@ -72,4 +82,4 @@ function Autorization({ isToken, setIsToken }) {
   );
 }
 
-export default Autorization;
+export default Authorization;
