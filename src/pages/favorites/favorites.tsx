@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import s from './Favorites.module.css';
+import s from './favorites.module.css';
 import axios from 'axios';
-import ModalForm from '../components/ModalForm.tsx';
 import { useNavigate } from 'react-router-dom';
-import { youtube } from '../api/youtubeApi.ts';
 import { useTranslation } from 'react-i18next';
+import { youtube } from '@/api/youtubeApi';
+import { Modal } from '@/components';
 
-function Favorites() {
+export const Favorites = () => {
   const { t } = useTranslation();
 
   const [favorites, setFavorites] = useState([]);
@@ -56,10 +56,8 @@ function Favorites() {
         ))}
       </div>
       {addedFavorite ? (
-        <ModalForm active={modalActive} setActive={setModalActive} {...addedFavorite} />
+        <Modal active={modalActive} setActive={setModalActive} {...addedFavorite} />
       ) : null}
     </div>
   );
-}
-
-export default Favorites;
+};

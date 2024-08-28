@@ -1,11 +1,9 @@
 import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Authorization from './pages/Authorization.tsx';
-import Main from './pages/Main.tsx';
-import Player from './pages/Player.tsx';
-import Favorites from './pages/Favorites.tsx';
-import Header from './components/Header.tsx';
+
+import { Authorization, Favorites, Main, Player } from './pages';
+import { Header } from './components/header/header';
 
 function App() {
   const [isToken, setIsToken] = useState(false);

@@ -1,9 +1,9 @@
 import React from 'react';
-import s from './Player.module.css';
+import s from './player.module.css';
 import Iframe from 'react-iframe';
 import { useLocation } from 'react-router-dom';
 
-function Player() {
+export const Player = () => {
   const location = useLocation();
   const id = `https://www.youtube.com/embed/${location.state}`;
 
@@ -14,6 +14,4 @@ function Player() {
       </div>
     </div>
   );
-}
-
-export default Player;
+};

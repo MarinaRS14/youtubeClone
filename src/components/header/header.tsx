@@ -1,6 +1,6 @@
 import React from 'react';
-import s from './Header.module.css';
-import logo from '../assets/img/logo.svg';
+import s from './header.module.css';
+import logo from '../../assets/img/logo.svg';
 
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ type HeaderPropsType = {
   setIsToken: (isToken: boolean) => void;
 };
 
-function Header({ isToken, setIsToken }: HeaderPropsType) {
+export const Header = ({ isToken, setIsToken }: HeaderPropsType) => {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -44,6 +44,4 @@ function Header({ isToken, setIsToken }: HeaderPropsType) {
       </div>
     </header>
   );
-}
-
-export default Header;
+};

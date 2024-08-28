@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import s from './Autorization.module.css';
-import logo from '../assets/img/logo.svg';
+import React from 'react';
+import s from './auth.module.css';
+import logo from '../../assets/img/logo.svg';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -16,7 +16,7 @@ interface InitialValues {
   password: string;
 }
 
-function Authorization({ isToken, setIsToken }: AuthorizationPropsType) {
+export const Authorization = ({ isToken, setIsToken }: AuthorizationPropsType) => {
   const { t } = useTranslation();
 
   const initialValues: InitialValues = {
@@ -80,6 +80,4 @@ function Authorization({ isToken, setIsToken }: AuthorizationPropsType) {
       </Formik>
     </div>
   );
-}
-
-export default Authorization;
+};

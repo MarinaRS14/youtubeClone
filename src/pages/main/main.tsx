@@ -1,15 +1,15 @@
 import React, { FormEvent, useState } from 'react';
-import s from './Main.module.css';
-import { youtube } from '../api/youtubeApi.ts';
-import gridAct from '../assets/img/table-active.svg';
-import grid from '../assets/img/table.svg';
-import listAct from '../assets/img/list-active.svg';
-import list from '../assets/img/list.svg';
-import unlikedHeart from '../assets/img/outlined-heart.svg';
-import likedHeart from '../assets/img/filled-heart.svg';
-import { useLocation, useNavigate } from 'react-router-dom';
-import ModalForm from '../components/ModalForm.tsx';
+import s from './main.module.css';
+import gridAct from '../../assets/img/table-active.svg';
+import grid from '../../assets/img/table.svg';
+import listAct from '../../assets/img/list-active.svg';
+import list from '../../assets/img/list.svg';
+import unlikedHeart from '../../assets/img/outlined-heart.svg';
+import likedHeart from '../../assets/img/filled-heart.svg';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { youtube } from '@/api/youtubeApi';
+import { Modal } from '@/components';
 
 type ResponseType = {
   totalResults: number;
@@ -17,7 +17,7 @@ type ResponseType = {
   request: string;
 };
 
-function Main() {
+export const Main = () => {
   const { t } = useTranslation();
 
   // const location = useLocation();
@@ -153,7 +153,7 @@ function Main() {
         ) : null}
       </div>
       {request ? (
-        <ModalForm
+        <Modal
           active={modalActive}
           setActive={setModalActive}
           request={request}
@@ -163,6 +163,4 @@ function Main() {
       ) : null}
     </div>
   );
-}
-
-export default Main;
+};
