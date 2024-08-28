@@ -23,30 +23,35 @@ header {
 }
 
 .header__menu div img {
+    cursor: pointer;
     width: 48px;
     height: 48px;
     margin-top: 16px;
-    cursor: pointer;
 }
 
 .header__button {
+    cursor: pointer;
+
     height: 80px;
     margin: 0 26px;
-    text-align: center;
-    vertical-align: middle;
+
     line-height: 80px;
     color: #1390E5;
+    text-align: center;
+    vertical-align: middle;
+
     transition: 0.2s ease;
-    cursor: pointer;
 }
+
 .header__button:hover {
     border-bottom: 2px solid #1390E5;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (width <= 480px) {
     .header__menu {
         justify-content: center;
     }
+
     .header__button {
         margin: 0 8px;
     }

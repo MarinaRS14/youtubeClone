@@ -1,26 +1,26 @@
-import React from 'react';
-import s from './header.module.css';
-import logo from '../../assets/img/logo.svg';
+import React from 'react'
+import s from './header.module.scss'
+import logo from '../../assets/img/logo.svg'
 
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 type HeaderPropsType = {
-  isToken: boolean;
-  setIsToken: (isToken: boolean) => void;
-};
+  isToken: boolean
+  setIsToken: (isToken: boolean) => void
+}
 
 export const Header = ({ isToken, setIsToken }: HeaderPropsType) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const logOut = async () => {
-    await localStorage.clear();
-    await setIsToken(!isToken);
-    navigate('/');
-  };
+    await localStorage.clear()
+    await setIsToken(!isToken)
+    navigate('/')
+  }
 
   return (
     <header>
@@ -43,5 +43,5 @@ export const Header = ({ isToken, setIsToken }: HeaderPropsType) => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}

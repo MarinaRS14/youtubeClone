@@ -1,0 +1,7 @@
+{
+    "stylelint.snippet": [
+        "css",
+        "postcss",
+        "scss"
+    ]
+}

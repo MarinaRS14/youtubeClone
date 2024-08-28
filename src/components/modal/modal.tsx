@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import s from './modal.module.css';
+import s from './modal.module.scss';
 import axios from 'axios';
 
 export const Modal = ({

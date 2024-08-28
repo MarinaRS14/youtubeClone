@@ -1,12 +1,12 @@
-import './App.css';
-import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.scss'
+import React, { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import { Authorization, Favorites, Main, Player } from './pages';
-import { Header } from './components/header/header';
+import { Authorization, Favorites, Main, Player } from './pages'
+import { Header } from './components/header/header'
 
 function App() {
-  const [isToken, setIsToken] = useState(false);
+  const [isToken, setIsToken] = useState(false)
 
   return (
     <div className="App">
@@ -27,7 +27,7 @@ function App() {
         )}
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

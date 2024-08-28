@@ -1,88 +1,101 @@
 
 .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    align-items: center;
+    justify-content: center;
+
     max-width: 686px;
     height: calc(100vh - 80px);
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 55px;
+
     transition: height 1s ease, align-items 1s ease, gap 1s, max-width 1s;
 }
 
 .wrapper__top {
+    gap: 22px;
     align-items: flex-start;
+
+    max-width: 1000px;
     height: calc(100% - 80px);
     padding-top: 40px;
-    gap: 22px;
-    max-width: 1000px;
 }
 
 p {
-    font-weight: 400;
     font-size: 36px;
+    font-weight: 400;
 }
 
 .search {
     display: flex;
     flex-direction: row;
-    height: 52px;
     width: 100%;
+    height: 52px;
 }
 
 .search input {
     width: calc(100% - 150px);
     min-width: calc(100% - 150px);
-    border-radius: 5px 0 0 5px;
-    border-bottom: 1px solid rgba(23, 23, 25, 0.2);
-    border-top: 1px solid rgba(23, 23, 25, 0.2);
-    border-left: 1px solid rgba(23, 23, 25, 0.2);
-    border-right: none;
-    font-size: 20px;
     padding-left: 15px;
-}
-.search input:focus {
-    outline: none;
-    background-color: rgba(197, 228, 249, 0.3);
-    border-top: 2px solid #1390E5;
-    border-left: 2px solid #1390E5;
-    border-bottom: 2px solid #1390E5;
 
-
-}
-.search input::placeholder {
-    color: #1717194D;
     font-size: 20px;
+
+    border-top: 1px solid rgb(23 23 25 / 20%);
+    border-right: none;
+    border-bottom: 1px solid rgb(23 23 25 / 20%);
+    border-left: 1px solid rgb(23 23 25 / 20%);
+    border-radius: 5px 0 0 5px;
+}
+
+.search input:focus {
+    background-color: rgb(197 228 249 / 30%);
+    border-top: 2px solid #1390E5;
+    border-bottom: 2px solid #1390E5;
+    border-left: 2px solid #1390E5;
+    outline: none;
+
+
+}
+
+.search input::placeholder {
+    font-size: 20px;
+    color: #1717194D;
 }
 
 .search button {
-    border: none;
-    background-color: #1390E5;
-    width: 150px;
-    border-radius: 0 5px 5px 0;
     cursor: pointer;
+
+    width: 150px;
+
+    font-size: 20px;
+    line-height: 52px;
     color: #fff;
     text-align: center;
     vertical-align: middle;
-    line-height: 52px;
-    font-size: 20px;
+
+    background-color: #1390E5;
+    border: none;
+    border-radius: 0 5px 5px 0;
 }
+
 .search button:hover {
     opacity: 0.9;
 }
 
 .block__button {
+    position: relative;
+    left: -40px;
+
     display: flex;
     flex-direction: row;
     align-items: center;
-    position: relative;
-    left: -40px;
 }
+
 .unliked {
+    cursor: pointer;
     width: 24px;
     height: 24px;
-    cursor: pointer;
 }
 
 .unliked__block {
@@ -92,53 +105,60 @@ p {
 .container_card {
     width: 100%;
 }
+
 .result__info, .info__left {
     display: flex;
     flex-direction: row;
     gap: 8px;
     justify-content: space-between;
 }
+
 li {
     list-style-type: none;
 }
+
 .bold {
     font-weight: 500;
 }
 
 .amount {
     font-weight: 400;
-    color: rgba(23, 23, 25, 0.3);
+    color: rgb(23 23 25 / 30%);
 }
 
 .content__grid {
-    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-top: 20px;
-    align-items: center;
-    justify-items: center;
     row-gap: 10px;
+    place-items: center center;
+
+    width: 100%;
+    margin-top: 20px;
 }
 
 /* card grid */
 .card {
-    height: 226px;
-    width: 245px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    width: 245px;
+    height: 226px;
 }
+
 .card img {
+    cursor: pointer;
     height: 138px;
     border: 1px solid #1390E5;
-    cursor: pointer;
 }
+
 .title, .channel {
     font-size: 14px;
 }
+
 .channel {
     font-weight: 400;
-    color: rgba(23, 23, 25, 0.3);
+    color: rgb(23 23 25 / 30%);
 }
 
 /* card list */
@@ -158,30 +178,31 @@ li {
 }
 
 .list img {
+    cursor: pointer;
     width: 157px;
     height: 88px;
     border: 1px solid #1390E5;
-    cursor: pointer;
 
 }
+
 .list__block {
     width: 510px;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (width <= 992px) {
     .content__grid {
         grid-template-columns: 1fr 1fr 1fr;
     }
     
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
     .content__grid {
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (width <= 480px) {
     .content__grid {
         grid-template-columns: 1fr;
     }

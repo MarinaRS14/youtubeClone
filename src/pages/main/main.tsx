@@ -1,33 +1,33 @@
-import React, { FormEvent, useState } from 'react';
-import s from './main.module.css';
-import gridAct from '../../assets/img/table-active.svg';
-import grid from '../../assets/img/table.svg';
-import listAct from '../../assets/img/list-active.svg';
-import list from '../../assets/img/list.svg';
-import unlikedHeart from '../../assets/img/outlined-heart.svg';
-import likedHeart from '../../assets/img/filled-heart.svg';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { youtube } from '@/api/youtubeApi';
-import { Modal } from '@/components';
+import React, { FormEvent, useState } from 'react'
+import s from './main.module.scss'
+import gridAct from '../../assets/img/table-active.svg'
+import grid from '../../assets/img/table.svg'
+import listAct from '../../assets/img/list-active.svg'
+import list from '../../assets/img/list.svg'
+import unlikedHeart from '../../assets/img/outlined-heart.svg'
+import likedHeart from '../../assets/img/filled-heart.svg'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { youtube } from '@/api/youtubeApi'
+import { Modal } from '@/components'
 
 type ResponseType = {
-  totalResults: number;
-  items: Array<any>;
-  request: string;
-};
+  totalResults: number
+  items: Array<any>
+  request: string
+}
 
 export const Main = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   // const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [request, setRequest] = useState('');
-  const [result, setResult] = useState<ResponseType | null>(null);
-  const [modalActive, setModalActive] = useState(false);
-  const [gridActive, setGridActive] = useState(true);
-  const [listActive, setListActive] = useState(false);
+  const [request, setRequest] = useState('')
+  const [result, setResult] = useState<ResponseType | null>(null)
+  const [modalActive, setModalActive] = useState(false)
+  const [gridActive, setGridActive] = useState(true)
+  const [listActive, setListActive] = useState(false)
   // const [locationState, setLocationState] = useState(location.state);
 
   // useEffect(() => {
@@ -38,7 +38,7 @@ export const Main = () => {
   // }, []);
 
   const onSearch = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (request) {
       const response = await youtube.get('/search', {
@@ -46,27 +46,27 @@ export const Main = () => {
           q: request,
           maxResults: 12,
         },
-      });
+      })
       setResult({
         totalResults: response.data.pageInfo.totalResults,
         items: response.data.items,
         request,
-      });
+      })
     }
-  };
+  }
 
   const handleClickGrid = () => {
-    setGridActive(!gridActive);
-    setListActive(!!gridActive);
-  };
+    setGridActive(!gridActive)
+    setListActive(!!gridActive)
+  }
   const handleClickList = () => {
-    setListActive(!listActive);
-    setGridActive(!!listActive);
-  };
+    setListActive(!listActive)
+    setGridActive(!!listActive)
+  }
 
-  const openVideo = (id) => {
-    navigate('/player', { state: id });
-  };
+  const openVideo = id => {
+    navigate('/player', { state: id })
+  }
 
   return (
     <div>
@@ -77,7 +77,7 @@ export const Main = () => {
             type="text"
             placeholder={t('searchPlaceholder')}
             value={request}
-            onChange={(e) => setRequest(e.target.value)}
+            onChange={e => setRequest(e.target.value)}
           />
           <div className={s.block__button}>
             {request ? (
@@ -110,7 +110,7 @@ export const Main = () => {
             {gridActive ? (
               <div className={s.content__grid}>
                 {result.items.map((item, index) => {
-                  const link = item.id.videoId;
+                  const link = item.id.videoId
                   return (
                     <div key={index} className={s.card}>
                       <img
@@ -125,7 +125,7 @@ export const Main = () => {
                       </h3>
                       <h3 className={s.channel}>{item.snippet.channelTitle}</h3>
                     </div>
-                  );
+                  )
                 })}
               </div>
             ) : (
@@ -162,5 +162,5 @@ export const Main = () => {
         />
       ) : null}
     </div>
-  );
-};
+  )
+}
